@@ -1,0 +1,1 @@
+export const PriceFormat = (payload) => `$${new Intl.NumberFormat('es-MX', { maximumSignificantDigits: 3 }).format(payload)}`

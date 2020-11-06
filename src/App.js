@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Form, Message, PriceList } from './components/index'
+
+const prices = [
+  {item: 'Shampoo', price: 78},
+  {item: 'Roast beef', price: 26988},
+  {item: 'Fish', price: 160},
+  {item: 'Ice Cream', price: 88},
+  {item: 'Rice', price: 1874},
+  {item: 'Kawamon', price: 350},
+]
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <React.Fragment>
+      <header>
+        <h1>Hola a todos al app</h1>
       </header>
-    </div>
+      <main>
+        <div>
+          <Message msg={'Hasta la vista Baby'} />
+          <Message msg={'Nos vemos en el infierno, Jhonny'} />
+          <Message msg={'LALALALALA'} />
+        </div>
+        <div>
+          <PriceList prices={prices}/>
+        </div>
+        <div>
+          <form>
+            <Form></Form>
+          </form>
+        </div>
+      </main>
+    </React.Fragment>
   );
 }
 

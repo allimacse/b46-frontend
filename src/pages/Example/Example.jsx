@@ -3,6 +3,7 @@ import {
   Message,
   PriceList,
   Form,
+  Effect,
 } from '../../components/index.js'
 
 const prices = [
@@ -22,6 +23,7 @@ const Example = () => {
     <React.Fragment>
       <header>
         <h1> Hola a todos al el app</h1>
+        <Effect/>
       </header>
       <main>
         <div>

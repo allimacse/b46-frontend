@@ -4,6 +4,8 @@ import {
   Example,
   Signup,
   NotFound,
+  Login,
+  Logout,
 } from './pages/index.js'
 
 import {
@@ -11,22 +13,32 @@ import {
   Route,
 } from 'react-router-dom'
 
+import { PrivateRoute } from './components/index.js'
+
 export default (
   <Switch>
     <Route
       exact path='/'
-      component={ Home }
+      component={Home}
     />
-    <Route
+    <PrivateRoute
       exact path='/example'
-      component={ Example }
+      component={Example}
     />
     <Route
       exact path='/signup'
-      component={ Signup }
+      component={Signup}
     />
     <Route
-      component={ NotFound }
+      exact path='/login'
+      component={Login}
+    />
+    <PrivateRoute
+      exact path='/logout'
+      component={Logout}
+    />
+    <Route
+      component={NotFound}
     />
   </Switch>
 )

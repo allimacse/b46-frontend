@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext  } from 'react'
 import { auth } from '../../utils/https.js'
+import {AuthContext} from '../../context/AuthContext.js'
+import { Redirect } from 'react-router-dom'
 
 const Signup = () => {
-  const [ first_name, setFirstName ] = useState('')
-  const [ last_name, setLastName ] = useState('')
-  const [ email, setEmail ] = useState('')
-  const [ bith_date, setBirthDate ] = useState('')
-  const [ password, setPassword ] = useState('')
+  const { isAuth } = useContext(AuthContext)
+  const [first_name, setFirstName] = useState('')
+  const [last_name, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [bith_date, setBirthDate] = useState('')
+  const [password, setPassword] = useState('')
   const [profile_img, setPorfileImg] = useState('')
-  
+  const [ redirect, setRedirect ] = useState(false)
+
   const handleForm = async (e) => {
     try {
       e.preventDefault()
@@ -17,13 +21,14 @@ const Signup = () => {
         last_name,
         email,
         bith_date,
-        password
+        password,
+        profile_img,
       }
 
       await auth.signup(body)
-
+      setRedirect(true)
     } catch (error) {
-     console.log(error) 
+      console.log(error)
     }
   }
 
@@ -44,7 +49,7 @@ const Signup = () => {
               <input
                 className="form-control"
                 value={first_name}
-                onChange={ e => setFirstName(e.target.value) }
+                onChange={e => setFirstName(e.target.value)}
                 placeholder="Ingresa tu nombre."
               />
             </div>
@@ -55,7 +60,7 @@ const Signup = () => {
               <input
                 className="form-control"
                 value={last_name}
-                onChange={ e => setLastName(e.target.value) }
+                onChange={e => setLastName(e.target.value)}
                 placeholder="Ingresa tu apellido."
               />
             </div>
@@ -67,7 +72,7 @@ const Signup = () => {
                 type="date"
                 className="form-control"
                 value={bith_date}
-                onChange={ e => setBirthDate(e.target.value) }
+                onChange={e => setBirthDate(e.target.value)}
                 placeholder="Ingresa la fecha de tu nacimiento."
               />
             </div>
@@ -78,7 +83,7 @@ const Signup = () => {
               <input
                 className="form-control"
                 value={profile_img}
-                onChange={ e => setPorfileImg(e.target.value) }
+                onChange={e => setPorfileImg(e.target.value)}
                 placeholder="Agrega una dirección de imagen."
               />
             </div>
@@ -90,7 +95,7 @@ const Signup = () => {
                 type="email"
                 className="form-control"
                 value={email}
-                onChange={ e => setEmail(e.target.value) }
+                onChange={e => setEmail(e.target.value)}
                 placeholder="Aquí va tu correo."
               />
             </div>
@@ -102,7 +107,7 @@ const Signup = () => {
                 type="password"
                 className="form-control"
                 value={password}
-                onChange={ e => setPassword(e.target.value) }
+                onChange={e => setPassword(e.target.value)}
                 placeholder="Escribe una contraseña"
               />
             </div>
@@ -115,6 +120,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
+      { redirect || isAuth ? <Redirect to="/login"/> : null}
     </React.Fragment>
   )
 }

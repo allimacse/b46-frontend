@@ -5,19 +5,22 @@ import {
 import {
   Navbar
 } from './components/index.js'
+import { AuthContextProvider} from './context/AuthContext.js'
 import Routes from './Routes.js'
 
 const App = () => {
-  return(
+  return (
     <React.Fragment>
       <Router>
-        <Navbar />
-        <div className="container-md">
-          { Routes }
-        </div>
+        <AuthContextProvider>
+          <Navbar />
+          <div className="container-md">
+            {Routes}
+          </div>
+        </AuthContextProvider>
       </Router>
     </React.Fragment>
   )
 }
 
-export default  App
+export default App

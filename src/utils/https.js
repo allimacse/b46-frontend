@@ -16,5 +16,9 @@ export const setAuthToken = token => {
 
 export const auth = {
   signup: body => instance.post('/signup', body),
-  login: body => instance.post('/login', body)
+  login: body => instance.post('/login', body),
+}
+
+export const users = {
+  findOne: id => instance.get(`/users/${id}`)
 }

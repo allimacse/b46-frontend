@@ -54,7 +54,7 @@ const Login = () => {
           Iniciar sesión
         </button>
       </form>
-      {/* { isAuth ? <Redirect to={"/"}/> : null } */}
+      { isAuth ? <Redirect to={"/"}/> : null }
     </React.Fragment>
   )
 }

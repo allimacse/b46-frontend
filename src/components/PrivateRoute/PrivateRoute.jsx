@@ -3,9 +3,10 @@ import { AuthContext } from '../../context/AuthContext.js'
 import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({ component, ...RouteProps }) => {
-  const { isAuth } = useContext(AuthContext)
+  const { isAuth,user } = useContext(AuthContext)
   const validateAuth = props => {
     const Component = component
+    console.log(user);
     return isAuth
       ? (<Component {...props} />)
       : (<Redirect to={'/login'}/>)

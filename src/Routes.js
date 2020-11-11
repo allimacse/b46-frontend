@@ -6,6 +6,7 @@ import {
   NotFound,
   Login,
   Logout,
+  Profile
 } from './pages/index.js'
 
 import {
@@ -36,6 +37,10 @@ export default (
     <PrivateRoute
       exact path='/logout'
       component={Logout}
+    />
+    <PrivateRoute
+      exact path='/profile/:id'
+      component={Profile}
     />
     <Route
       component={NotFound}

@@ -7,31 +7,40 @@ const navStyles = {
 }
 
 const Navbar = () => {
-  const { isAuth } = useContext(AuthContext)
+  const { isAuth, user } = useContext(AuthContext)
+  console.log(user);
 
   return (
     <nav className="navbar navbar-light" style={navStyles}>
       <Link to={'/'}>
         <span className="navbar-brand">
           Photify
-        </span> 
+        </span>
       </Link>
-        {
-          isAuth
-            ? (
-              <ul className="navbar-nav">
-                <Link to={'/logout'}>
-                  <li className="nav-item">
-                    <span className="nav-link">Cerrar sesión</span>
-                  </li>
-                </Link>
-                <Link to={'/example'}>
-                  <li className="nav-item">
-                    <span className="nav-link">Example</span>
-                  </li>
-                </Link>
-              </ul>
-            )
+      {
+        isAuth
+          ? (
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <span className="nav-link">{user.first_name}</span>
+              </li>
+              <Link to={'/profile/' + user.id}>
+                <li className="nav-item">
+                  <span className="nav-link">Perfil</span>
+                </li>
+              </Link>
+              <Link to={'/logout'}>
+                <li className="nav-item">
+                  <span className="nav-link">Cerrar sesión</span>
+                </li>
+              </Link>
+              <Link to={'/example'}>
+                <li className="nav-item">
+                  <span className="nav-link">Example</span>
+                </li>
+              </Link>
+            </ul>
+          )
           : (
             <ul className="navbar-nav">
               <Link to={'/signup'}>
@@ -45,9 +54,9 @@ const Navbar = () => {
                 </li>
               </Link>
             </ul>
-            )
-        }
-      
+          )
+      }
+
     </nav>
   )
 }

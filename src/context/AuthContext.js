@@ -7,8 +7,9 @@ export const AuthContextProvider = (props) => {
 
   const [user, setUser] = useState(null)
   const [isAuth, setIsAuth] = useState(false)
+  
   const logIn = (newToken) => {
-    localStorage.setItem('photofy-token', newToken)
+    localStorage.setItem('photify-token', newToken)
     const decoded = decode(newToken)
     setAuthToken(newToken)
     setUser(decoded)
@@ -17,6 +18,7 @@ export const AuthContextProvider = (props) => {
   }
 
   const logOut = () =>{
+    console.log("HOLA");
     localStorage.removeItem('photify-token')
     setUser(null)
     setIsAuth(false)
